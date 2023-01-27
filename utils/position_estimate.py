@@ -15,6 +15,12 @@ while True:
   
   if res.pose_landmarks:
     vect.draw_landmarks(frame, res.pose_landmarks, position.POSE_CONNECTIONS)
+    # identificando macros
+    for id, lm in enumerate(res.pose_landmarks.landmark):
+      height, width, coord = frame.shape
+      print(id, lm)
+      x_coord, y_coord = int(lm.x * width), int(lm.y * height)
+      cv2.circle(frame, (x_coord, y_coord), 5, (255, 0, 0), cv2.FILLED)
       
   cv2.imshow("Image", frame)
   cv2.waitKey(1)
